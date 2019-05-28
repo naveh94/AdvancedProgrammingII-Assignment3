@@ -9,8 +9,13 @@ namespace Ex3.Controllers
     public class SaveController : Controller
     {
         // GET: Save
-        public ActionResult Index()
+        public ActionResult SaveFile(String ip, int port, int freq, int time, String filename)
         {
+            ViewBag.IP = ip;
+            ViewBag.Port = port;
+            ViewBag.Freq = freq;
+            ViewBag.Time = time;
+            ViewBag.File = filename;
             return View();
         }
     }
