@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Exercise3
+namespace WebAppTest
 {
     public class RouteConfig
     {
@@ -17,7 +17,7 @@ namespace Exercise3
                 name: "DisplayFreq",
                 url: "display/{ip}/{port}/{freq}",
                 defaults: new { controller = "Home", action = "DisplayFreq" },
-                constraints: new { ip = @"\d+.\d+.\d+.\d+", port = @"\d+", freq = @"\d+" }
+                constraints: new { ip = @"\d+.\d+.\d+.\d+", port= @"\d+", freq = @"\d+" }
                 );
 
             routes.MapRoute(
@@ -46,6 +46,7 @@ namespace Exercise3
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
         }
     }
 }
