@@ -4,9 +4,19 @@
 }
 
 <h2>DisplayFreq</h2>
-<p>
-    ip = @ViewBag.IP <br />
-    port = @ViewBag.Port <br />
-    freq = @ViewBag.Freq
-</p>
+<canvas id="map"></canvas>
 
+<script>
+    var canvas = document.getElementById("map");
+    var ctx = canvas.getContext("2d");
+    var intervalTime = @ViewBag.freq * 1000;
+    myTimer = (function () {
+        $.post("@Url.Action("GetPoint")").done(function (xml) {
+            var xmlDoc = $.parseXML(xml),
+                $xml = $(xmlDoc),
+                x = parseInt($xml.find("Lat").text()),
+                y = parseInt($xml.find("Lon").text());
+            ctx.arc(x, y, 5, 0, 0, 0);
+        })
+    });
+</script>

@@ -104,13 +104,13 @@
     <Content Include="Web.config" />
     <Content Include="Views\Display\DisplayFreq.cshtml" />
     <Content Include="Views\Display\DisplayFile.cshtml" />
-    <Content Include="Views\Save\SaveFile.cshtml" />
     <Content Include="Views\Display\Index.cshtml" />
+    <Content Include="Views\Display\SaveFile.cshtml" />
+    <Content Include="Views\Display\DisplaySinglePoint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DisplayController.cs" />
-    <Compile Include="Controllers\SaveController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -127,7 +127,6 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Display\DisplayRoute.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

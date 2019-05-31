@@ -14,7 +14,7 @@ namespace Ex3.Controllers
             return View();
         }
 
-        public ActionResult DisplayRoute(String ip, int port)
+        public ActionResult DisplaySinglePoint(String ip, int port)
         {
             ViewBag.IP = ip;
             ViewBag.Port = port;
@@ -34,6 +34,23 @@ namespace Ex3.Controllers
             ViewBag.File = filename;
             ViewBag.Freq = freq;
             return View();
+        }
+
+        // GET: Save
+        public ActionResult SaveFile(String ip, int port, int freq, int time, String filename)
+        {
+            ViewBag.IP = ip;
+            ViewBag.Port = port;
+            ViewBag.Freq = freq;
+            ViewBag.Time = time;
+            ViewBag.File = filename;
+            return View();
+        }
+
+        public string GetPoint()
+        {
+            //todo
+            return "";
         }
     }
 }
