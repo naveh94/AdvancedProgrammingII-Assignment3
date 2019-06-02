@@ -109,11 +109,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Client.cs" />
-    <Compile Include="Models\FileLoader.cs" />
-    <Compile Include="Models\FileSaver.cs" />
-    <Compile Include="Models\Interfaces\IClient.cs" />
-    <Compile Include="Models\Interfaces\IPointSource.cs" />
+    <Compile Include="Models\Network\Client.cs" />
+    <Compile Include="Models\FileSystem\FileLoader.cs" />
+    <Compile Include="Models\FileSystem\FileSaver.cs" />
+    <Compile Include="Models\Network\IClient.cs" />
+    <Compile Include="Models\IPointSource.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Models\PointStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
