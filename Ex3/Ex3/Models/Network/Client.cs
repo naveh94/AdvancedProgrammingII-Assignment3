@@ -11,11 +11,15 @@ using System.Web;
 
 namespace Ex3.Models.Network
 {
+    /// <summary>
+    /// Created the whole Client class without using threads,
+    /// because either we will manage the threads on anohter class, or we will keep it without
+    /// concurrency. Either way we cannot do anything until the Client have connected.
+    /// </summary>
     public class Client: IClient
     {
         private IPEndPoint _endPoint;
         private TcpClient _client;
-        private Thread _clientThread;
         private NetworkStream _stream;
         private BinaryWriter _writer;
         private BinaryReader _reader;
@@ -24,30 +28,26 @@ namespace Ex3.Models.Network
         {
             _endPoint = new IPEndPoint(IPAddress.Parse(ip), port);
             _client = new TcpClient();
-            _clientThread = new Thread(() =>
-            {
-                while (!_client.Connected)
-                {
-                    try
-                    {
-                        _client.Connect(_endPoint);
-                    }
-                    catch (Exception) { };
-                }
-                _stream = _client.GetStream();
-                _writer = new BinaryWriter(_stream);
-                _reader = new BinaryReader(_stream);
-            });
+            
         }
 
         public void Connect()
         {
-            _clientThread.Start();
+            while (!_client.Connected)
+            {
+                try
+                {
+                    _client.Connect(_endPoint);
+                }
+                catch (Exception) { };
+            }
+            _stream = _client.GetStream();
+            _writer = new BinaryWriter(_stream);
+            _reader = new BinaryReader(_stream);
         }
         
         public void Disconnect()
         {
-            _clientThread.Abort();
             _writer.Close();
             _reader.Close();
             _stream.Close();
