@@ -3,20 +3,40 @@
     ViewBag.Title = "DisplayFreq";
 }
 
-<h2>DisplayFreq</h2>
-<canvas id="map"></canvas>
-
+<canvas id="mapCanvas"></canvas>
+<script src="~/Scripts/displayScript.js"></script>
 <script>
-    var canvas = document.getElementById("map");
-    var ctx = canvas.getContext("2d");
-    var intervalTime = @ViewBag.freq * 1000;
-    myTimer = (function () {
+    background.src = "@( VirtualPathUtility.ToAbsolute("~\\Resources\\map.png") )";
+
+    var frequency = @ViewBag.Freq,
+        time = @ViewBag.Time,
+        onTimer = (function () {
         $.post("@Url.Action("GetPoint")").done(function (xml) {
             var xmlDoc = $.parseXML(xml),
                 $xml = $(xmlDoc),
-                x = parseInt($xml.find("Lat").text()),
-                y = parseInt($xml.find("Lon").text());
-            ctx.arc(x, y, 5, 0, 0, 0);
-        })
-    });
+                x = parseInt($xml.find("Lat").text()) / 180,
+                y = parseInt($xml.find("Lon").text()) / 180;
+            points.push(new point(x, y));
+            draw();
+            });
+        });
+
+    background.onload = function () {
+        document.addEventListener("resize", draw);
+        document.addEventListener("load", draw);
+
+        console.log("test");
+
+        var intervalId;
+
+        if (frequency > 0) {
+            intervalId = setInterval(onTimer, frequency * 1000);
+        } else {
+            onTimer();
+        }
+
+        if (time > 0) {
+            setTimeout(function () { clearInterval(intervalId) }, time * 1000);
+        }
+    }
 </script>
