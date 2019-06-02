@@ -13,7 +13,6 @@ namespace Ex3.Controllers
     public class DisplayController : Controller
     {
         private static Random rnd = new Random();
-        private readonly string bgPath = System.Web.HttpContext.Current.Server.MapPath("~/Resources/map.png");
 
         // GET: Display
         public ActionResult Index()
@@ -23,8 +22,6 @@ namespace Ex3.Controllers
 
         public ActionResult DisplaySinglePoint(String ip, int port)
         {
-            ViewBag.IP = ip;
-            ViewBag.Port = port;
             ViewBag.Freq = 0;
             ViewBag.Time = 0;
             return View();
@@ -32,7 +29,6 @@ namespace Ex3.Controllers
 
         public ActionResult DisplayFreq(String ip, int port, int freq)
         {
-            ViewBag.BG = bgPath;
             ViewBag.Freq = freq;
             ViewBag.Time = 0;
             return View();
@@ -49,8 +45,6 @@ namespace Ex3.Controllers
         // GET: Save
         public ActionResult SaveFile(String ip, int port, int freq, int time, String filename)
         {
-            ViewBag.IP = ip;
-            ViewBag.Port = port;
             ViewBag.Freq = freq;
             ViewBag.Time = time;
             ViewBag.File = filename;
