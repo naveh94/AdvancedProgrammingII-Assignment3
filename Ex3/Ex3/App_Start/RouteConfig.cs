@@ -17,9 +17,9 @@ namespace Ex3
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Display",
+                name: "DisplaySinglePoint",
                 url: "display/{ip}/{port}",
-                defaults: new { controller = "Display", action = "DisplayRoute" },
+                defaults: new { controller = "Display", action = "DisplaySinglePoint" },
                 constraints: new { ip = IP_PATTERN, port = NUM_PATTERN }
                 );
 
@@ -40,7 +40,7 @@ namespace Ex3
             routes.MapRoute(
                 name: "SaveFile",
                 url: "save/{ip}/{port}/{freq}/{time}/{filename}",
-                defaults: new { controller = "Save", action = "SaveFile" },
+                defaults: new { controller = "Display", action = "SaveFile" },
                 constraints: new { ip = IP_PATTERN, port = NUM_PATTERN, freq = NUM_PATTERN, time = NUM_PATTERN }
                 );
 
