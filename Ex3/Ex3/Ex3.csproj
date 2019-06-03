@@ -117,6 +117,7 @@
     <Compile Include="Models\Network\PointFromNetwork.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Models\PointStream.cs" />
+    <Compile Include="Models\Quadple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +129,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Display\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

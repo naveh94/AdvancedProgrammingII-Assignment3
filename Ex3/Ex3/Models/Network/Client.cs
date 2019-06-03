@@ -23,31 +23,37 @@ namespace Ex3.Models.Network
         private NetworkStream _stream;
         private BinaryWriter _writer;
         private BinaryReader _reader;
+        private Thread _clientThread;
 
         public Client(string ip, int port)
         {
-            _endPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+           _endPoint = new IPEndPoint(IPAddress.Parse(ip), port);
             _client = new TcpClient();
-            
+            _clientThread = new Thread(() =>
+            {
+                while (!_client.Connected)
+                {
+                    try
+                    {
+                        _client.Connect(_endPoint);
+                    }
+                    catch (Exception) { };
+                }
+                _stream = _client.GetStream();
+                _writer = new BinaryWriter(_stream);
+                _reader = new BinaryReader(_stream);
+            });
+
         }
 
         public void Connect()
         {
-            while (!_client.Connected)
-            {
-                try
-                {
-                    _client.Connect(_endPoint);
-                }
-                catch (Exception) { };
-            }
-            _stream = _client.GetStream();
-            _writer = new BinaryWriter(_stream);
-            _reader = new BinaryReader(_stream);
+            _clientThread.Start();
         }
         
         public void Disconnect()
         {
+            _clientThread.Abort();
             _writer.Close();
             _reader.Close();
             _stream.Close();
@@ -57,6 +63,7 @@ namespace Ex3.Models.Network
         {
             string buffer = "";
             char c;
+            while (_writer == null) { }
             _writer.Write(Encoding.ASCII.GetBytes(input));
             do
             {

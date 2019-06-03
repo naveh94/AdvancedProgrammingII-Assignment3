@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Ex3.Models.Network
 {
-    public class PointFromNetwork
+    public class PointFromNetwork : IPointSource
     {
         private IClient _client;
 
@@ -21,9 +21,9 @@ namespace Ex3.Models.Network
 
         public Point GetPoint()
         {
-            string Lat = _client.GetValue(GET_LAT);
             string Lon = _client.GetValue(GET_LON);
-            return new Point(StringToValue(Lat), StringToValue(Lon));
+            string Lat = _client.GetValue(GET_LAT);
+            return new Point(StringToValue(Lon), StringToValue(Lat));
         }
 
         public Quadple GetQuadple()

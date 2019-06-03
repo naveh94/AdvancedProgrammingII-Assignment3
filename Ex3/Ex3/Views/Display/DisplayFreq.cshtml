@@ -14,9 +14,12 @@
         $.post("@Url.Action("GetPoint")").done(function (xml) {
             var xmlDoc = $.parseXML(xml),
                 $xml = $(xmlDoc),
-                x = (parseInt($xml.find("Lon").text()) + 180) / 360,
-                y = (parseInt($xml.find("Lat").text()) + 90) / 180;
-            console.log(x +","+ y);
+                preNormX = parseFloat($xml.find("Lon").text()),
+                preNormY = parseFloat($xml.find("Lat").text()),
+                x = (preNormX + 180) / 360,
+                y = (preNormY + 90) / 180;
+
+            console.log(x + "," + y + "||" + preNormX + "," + preNormY);
             points.push(new point(x, y));
             draw();
             });
