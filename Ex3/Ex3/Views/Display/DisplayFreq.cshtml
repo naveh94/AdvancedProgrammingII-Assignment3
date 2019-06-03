@@ -14,8 +14,9 @@
         $.post("@Url.Action("GetPoint")").done(function (xml) {
             var xmlDoc = $.parseXML(xml),
                 $xml = $(xmlDoc),
-                x = parseInt($xml.find("Lat").text()) / 180,
-                y = parseInt($xml.find("Lon").text()) / 180;
+                x = (parseInt($xml.find("Lon").text()) + 180) / 360,
+                y = (parseInt($xml.find("Lat").text()) + 90) / 180;
+            console.log(x +","+ y);
             points.push(new point(x, y));
             draw();
             });

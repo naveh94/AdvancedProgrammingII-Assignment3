@@ -1,5 +1,4 @@
-﻿using Ex3.Models.Interfaces;
-using Ex3.Models;
+﻿using Ex3.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,8 +53,8 @@ namespace Ex3.Controllers
         [HttpPost]
         public string GetPoint()
         {
-            int x = rnd.Next(180);
-            int y = rnd.Next(180);
+            int x = rnd.Next(360) - 180;
+            int y = rnd.Next(180) - 90;
 
             return ToXml(new Point(x,y));
         }
