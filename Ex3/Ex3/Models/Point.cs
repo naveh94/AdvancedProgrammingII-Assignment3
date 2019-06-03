@@ -20,8 +20,8 @@ namespace Ex3.Models
         public void ToXml(XmlWriter writer)
         {
             writer.WriteStartElement("Point");
-            writer.WriteElementString("Lat", this.X.ToString());
-            writer.WriteElementString("Lon", this.Y.ToString());
+            writer.WriteElementString("Lon", this.X.ToString());
+            writer.WriteElementString("Lat", this.Y.ToString());
             writer.WriteEndElement();
         }
     }

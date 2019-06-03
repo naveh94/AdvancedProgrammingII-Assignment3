@@ -114,6 +114,7 @@
     <Compile Include="Models\FileSystem\FileSaver.cs" />
     <Compile Include="Models\Network\IClient.cs" />
     <Compile Include="Models\IPointSource.cs" />
+    <Compile Include="Models\Network\PointFromNetwork.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Models\PointStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

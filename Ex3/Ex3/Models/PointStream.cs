@@ -9,7 +9,7 @@ namespace Ex3.Models
     {
        public Point GetPoint()
         {
-         
+            throw new NotImplementedException();
         }
 
       public void GetFourArgs()
