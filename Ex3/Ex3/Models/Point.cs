@@ -8,8 +8,8 @@ namespace Ex3.Models
 {
     public class Point
     {
-        int X { get; set; }
-        int Y { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
 
         public Point(int x, int y)
         {
