@@ -11,7 +11,7 @@ namespace Ex3.Models
         {
          
         }
-//void for now (should it return a vector?)
+
       public void GetFourArgs()
         {
 

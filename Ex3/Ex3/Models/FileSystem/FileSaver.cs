@@ -7,12 +7,17 @@ namespace Ex3.Models
 {
     public class FileSaver
     {
+        IPointSource pointSource = new IPointSource();
         string fileName = "flight1";
+
+        
         //not sure there is need of properties
         public string FileName { get => fileName; set => fileName = value; }
         public void SaveToFile(string input, string fileName)
         {
             this.fileName = fileName;
+            write
+            
         }
         
     }
