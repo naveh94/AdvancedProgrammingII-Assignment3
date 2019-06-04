@@ -22,6 +22,6 @@ namespace Ex3.Models.FileSystem
             return new Point(quadple.Lon, quadple.Lat);
         }
         //where to save the values of he qudple?
-        /
+        
     }
 }
