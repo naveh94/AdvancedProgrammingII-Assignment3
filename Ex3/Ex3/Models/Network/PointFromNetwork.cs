@@ -10,10 +10,12 @@ namespace Ex3.Models.Network
         //getting the actual information about the plane location from the simulator
         private IClient _client;
 
+        #region readonly
         private readonly String GET_RUDDER = "get controls/flight/rudder\r\n";
         private readonly String GET_THROTTLE = "get controls/engines/current-engine/throttle\r\n";
         private readonly String GET_LAT = "get position/latitude-deg\r\n";
         private readonly String GET_LON = "get position/longitude-deg\r\n";
+        #endregion
 
         public PointFromNetwork(IClient client)
         {

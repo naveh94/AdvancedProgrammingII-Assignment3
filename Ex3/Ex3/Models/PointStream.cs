@@ -5,6 +5,10 @@ using System.Web;
 
 namespace Ex3.Models
 {
+    /// <summary>
+    /// A singleton class that serve as the model for the web application.
+    /// Contains a IPointSource element.
+    /// </summary>
     public class PointStream
     {
         private static PointStream instance;

@@ -35,6 +35,7 @@ namespace Ex3.Models.FileSystem
             return new Point(lon, lat);
         }
 
+        public void Close() { }
        
     }
 }

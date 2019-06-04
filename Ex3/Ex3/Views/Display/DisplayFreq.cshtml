@@ -25,9 +25,14 @@
             });
         });
 
+    var close = function () {
+         $.post("@Url.Action("Close")");
+    }
+
+    document.addEventListener("close", close);
+    document.addEventListener("resize", draw);
+    document.addEventListener("load", draw);
     background.onload = function () {
-        document.addEventListener("resize", draw);
-        document.addEventListener("load", draw);
 
         console.log("test");
 
