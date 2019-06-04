@@ -2,6 +2,7 @@
     this.x = x;
     this.y = y;
 }
+
 var points = [];
 
 var canv = document.getElementById("mapCanvas"),

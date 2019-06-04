@@ -11,11 +11,6 @@ using System.Web;
 
 namespace Ex3.Models.Network
 {
-    /// <summary>
-    /// Created the whole Client class without using threads,
-    /// because either we will manage the threads on anohter class, or we will keep it without
-    /// concurrency. Either way we cannot do anything until the Client have connected.
-    /// </summary>
     public class Client: IClient
     {
         private IPEndPoint _endPoint;
