@@ -33,5 +33,10 @@ namespace Ex3.Models
         {
             return _source.GetPoint();
         }
+
+        public void Close()
+        {
+            this._source.Close();
+        }
     }
 }

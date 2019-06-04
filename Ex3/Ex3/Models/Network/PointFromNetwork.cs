@@ -28,8 +28,8 @@ namespace Ex3.Models.Network
 
         public Quadple GetQuadple()
         {
-            string Lat = _client.GetValue(GET_LON);
-            string Lon = _client.GetValue(GET_LAT);
+            string Lon = _client.GetValue(GET_LON);
+            string Lat = _client.GetValue(GET_LAT);
             string Rudder = _client.GetValue(GET_RUDDER);
             string Throttle = _client.GetValue(GET_THROTTLE);
             return new Quadple(StringToValue(Lon), StringToValue(Lat), StringToValue(Rudder), StringToValue(Throttle));
@@ -39,6 +39,11 @@ namespace Ex3.Models.Network
         {
             string[] split = input.Split(new char[] { '\'' });
             return double.Parse(split[1]);
+        }
+
+        public void Close()
+        {
+            this._client.Disconnect();
         }
 
     }

@@ -10,24 +10,37 @@
 
     var frequency = @ViewBag.Freq,
         time = @ViewBag.Time,
+        intervalId,
         onTimer = (function () {
-        $.post("@Url.Action("GetPoint")").done(function (xml) {
-            var xmlDoc = $.parseXML(xml),
-                $xml = $(xmlDoc),
-                x = (parseInt($xml.find("Lon").text()) + 180) / 360,
-                y = (parseInt($xml.find("Lat").text()) + 90) / 180;
-            points.push(new point(x, y));
-            draw();
+            $.post("@Url.Action("GetPoint")").done(function (xml) {
+                if (xml.length < 2) {
+                    close();
+                    alert("Animation have ended!");
+                    clearInterval(intervalId);
+                } else {
+                    var xmlDoc = $.parseXML(xml),
+                        $xml = $(xmlDoc),
+                        preNormX = parseFloat($xml.find("Lon").text()),
+                        preNormY = parseFloat($xml.find("Lat").text()),
+                        x = (preNormX + 180) / 360,
+                        y = (preNormY + 90) / 180;
+
+                    console.log(x + "," + y + "||" + preNormX + "," + preNormY);
+                    points.push(new point(x, y));
+                    draw();
+                }
             });
         });
 
+    
+    var close = function () {
+         $.post("@Url.Action("Close")");
+    }
+
+    document.addEventListener("close", close);
+    document.addEventListener("resize", draw);
+    document.addEventListener("load", draw);
     background.onload = function () {
-        document.addEventListener("resize", draw);
-        document.addEventListener("load", draw);
-
-        console.log("test");
-
-        var intervalId;
 
         if (frequency > 0) {
             intervalId = setInterval(onTimer, frequency * 1000);

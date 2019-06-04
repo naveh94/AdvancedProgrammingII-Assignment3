@@ -9,5 +9,6 @@ namespace Ex3.Models
     public interface IPointSource
     {
         Point GetPoint();
+        void Close();
     }
 }

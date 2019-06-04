@@ -1,28 +1,35 @@
-﻿function point(x, y) {
+﻿
+// Struct for Point
+function point(x, y) {
     this.x = x;
     this.y = y;
 }
 
+// Points array for holding the points we already recieved.
 var points = [];
 
+// Setting the canvas.
 var canv = document.getElementById("mapCanvas"),
     ctx = canv.getContext("2d");
 
+// Setting the background.
 var background = new Image();
-console.log(background.src);
 
-
+// function for setting the Canvas' size
 var setSizes = function () {
     canv.width = window.innerWidth;
     canv.height = window.innerHeight;
 }
 
+// function for printing the background on the canvas (clearing the canvas).
 ctx.clear = function () {
     canvwidth = canv.clientWidth;
     canvheight = canv.clientHeight;
     ctx.drawImage(background, 0, 0, canvwidth, canvheight);
 }
 
+    // function for drawing the last point recieved,
+    // and a line that goes throgh all the points in points array.
 var draw = function () {
     setSizes();
     ctx.clear();
@@ -51,22 +58,5 @@ var draw = function () {
         }
         ctx.lineTo(normalX, normalY);
         ctx.stroke();
-    }
-}
-
-background.onload = function () {
-    document.addEventListener("resize", draw);
-    document.addEventListener("load", draw);
-
-    console.log("test");
-
-    if (frequency > 0) {
-        setInterval(onTimer, frequency * 1000);
-    } else {
-        onTimer();
-    }
-
-    if (time > 0) {
-        setTimeout(function () { clearInterval() }, time * 1000);
     }
 }

@@ -17,7 +17,7 @@ namespace Ex3.Models.FileSystem
       
         }
 
-       public void ReadFromFile()
+       public string ReadFromFile()
            
         {
             using (StreamReader reader = File.OpenText(_path))

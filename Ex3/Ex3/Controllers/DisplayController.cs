@@ -1,4 +1,5 @@
 ﻿using Ex3.Models;
+using Ex3.Models.FileSystem;
 using Ex3.Models.Network;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,12 @@ namespace Ex3.Controllers
 {
     public class DisplayController : Controller
     {
+
+        #region readonly
+        private static readonly string FOLDER = @"~\Save\";
+        private static readonly string EXTE = ".xml";
         private readonly static Random rnd = new Random();
+        #endregion
 
         // GET: Display
         public ActionResult Index()
@@ -59,7 +65,7 @@ namespace Ex3.Controllers
 
         public ActionResult DisplayFile(String filename, int freq)
         {
-            ViewBag.File = filename;
+            PointStream.Instance(new PointFromFile(Path(filename)));
             ViewBag.Freq = freq;
             ViewBag.Time = 0;
             return View();
@@ -68,16 +74,32 @@ namespace Ex3.Controllers
         // GET: Save
         public ActionResult SaveFile(String ip, int port, int freq, int time, String filename)
         {
+            IClient client;
+            try
+            {
+                client = new Client(ip, port);
+                client.Connect();
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e;
+                return View("Error", e);
+            }
+            PointStream.Instance(new PointToFile(new PointFromNetwork(client), Path(filename)));
             ViewBag.Freq = freq;
             ViewBag.Time = time;
-            ViewBag.File = filename;
             return View();
         }
 
         [HttpPost]
         public string GetPoint()
         {
-            return ToXml(PointStream.Instance().GetPoint());
+            Point p = PointStream.Instance().GetPoint();
+            if (p == null)
+            {
+                return null;
+            }
+            return ToXml(p);
         }
 
         private string ToXml(Point point)
@@ -96,6 +118,17 @@ namespace Ex3.Controllers
             writer.Flush();
 
             return sb.ToString();
+        }
+
+        [HttpPost]
+        public void Close()
+        {
+            PointStream.Instance().Close();
+        }
+
+        private string Path(string filename)
+        {
+            return System.Web.HttpContext.Current.Server.MapPath(FOLDER + filename + EXTE);
         }
     }
 }
