@@ -9,6 +9,8 @@ namespace Ex3.Models {
         public double Lat { get; set; }
         public double Throttle { get; set; }
         public double Rudder { get; set; }
+
+        //constructor
         public Quadple(double lon, double lat, double rudder, double throttle)
         {
             this.Lon = lon;

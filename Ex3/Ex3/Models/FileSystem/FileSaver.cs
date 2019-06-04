@@ -3,22 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Ex3.Models
+namespace Ex3.Models.FileSystem
 {
     public class FileSaver
     {
         IPointSource pointSource = new IPointSource();
         string fileName = "flight1";
-
+        //string filePath= "C:\Users\Noa\Source\Repos\noazoulay\Exercise3\Ex3\Ex3\Models\Saved\flight1.txt";
         
-        //not sure there is need of properties
-        public string FileName { get => fileName; set => fileName = value; }
         public void SaveToFile(string input, string fileName)
         {
-            this.fileName = fileName;
-            write
-            
+            System.IO.File.WriteAllText(@"C:\Users\Noa\Source\Repos\noazoulay\Exercise3\Ex3\Ex3\Models\Saved\flight1.txt", input);
+          //  using (Stream destination = File.Create("flight1")) ;
+          //      Write(stream, destination);
+
         }
+
+        public void Write(Stream from, Stream to)
+        {
+            for (int a = from.ReadByte(); a != -1; a = from.ReadByte())
+                to.WriteByte((byte)a);
+        }
+
         
+
     }
 }
