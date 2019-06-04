@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex3.Models
 {
-    interface IPointSource
+    public interface IPointSource
     {
         Point GetPoint();
     }

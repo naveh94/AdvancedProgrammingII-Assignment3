@@ -51,22 +51,21 @@ var draw = function () {
         ctx.lineTo(normalX, normalY);
         ctx.stroke();
     }
+}
 
+background.onload = function () {
+    document.addEventListener("resize", draw);
+    document.addEventListener("load", draw);
 
-    background.onload = function () {
-        document.addEventListener("resize", draw);
-        document.addEventListener("load", draw);
+    console.log("test");
 
-        console.log("test");
+    if (frequency > 0) {
+        setInterval(onTimer, frequency * 1000);
+    } else {
+        onTimer();
+    }
 
-        if (frequency > 0) {
-            setInterval(onTimer, frequency * 1000);
-        } else {
-            onTimer();
-        }
-
-        if (time > 0) {
-            setTimeout(function () { clearInterval() }, time * 1000);
-        }
+    if (time > 0) {
+        setTimeout(function () { clearInterval() }, time * 1000);
     }
 }

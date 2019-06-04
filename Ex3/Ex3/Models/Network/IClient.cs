@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex3.Models.Network
 {
-    interface IClient
+    public interface IClient
     {
         void Connect();
         void Disconnect();

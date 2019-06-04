@@ -1,4 +1,5 @@
 ﻿using Ex3.Models;
+using Ex3.Models.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Ex3.Controllers
 {
     public class DisplayController : Controller
     {
-        private static Random rnd = new Random();
+        private readonly static Random rnd = new Random();
 
         // GET: Display
         public ActionResult Index()
@@ -21,6 +22,18 @@ namespace Ex3.Controllers
 
         public ActionResult DisplaySinglePoint(String ip, int port)
         {
+            IClient client;
+            try
+            {
+                client = new Client(ip, port);
+                client.Connect();
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e;
+                return View("Error", e);
+            }
+            PointStream.Instance(new PointFromNetwork(client));
             ViewBag.Freq = 0;
             ViewBag.Time = 0;
             return View();
@@ -28,6 +41,17 @@ namespace Ex3.Controllers
 
         public ActionResult DisplayFreq(String ip, int port, int freq)
         {
+            IClient client;
+            try
+            {
+                client = new Client(ip, port);
+                client.Connect();
+            } catch(Exception e)
+            {
+                ViewBag.Error = e;
+                return View("Error", e);
+            }
+            PointStream.Instance(new PointFromNetwork(client));
             ViewBag.Freq = freq;
             ViewBag.Time = 0;
             return View();
@@ -53,10 +77,7 @@ namespace Ex3.Controllers
         [HttpPost]
         public string GetPoint()
         {
-            int x = rnd.Next(360) - 180;
-            int y = rnd.Next(180) - 90;
-
-            return ToXml(new Point(x,y));
+            return ToXml(PointStream.Instance().GetPoint());
         }
 
         private string ToXml(Point point)

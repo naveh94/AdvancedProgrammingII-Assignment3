@@ -5,16 +5,33 @@ using System.Web;
 
 namespace Ex3.Models
 {
-    public class PointStream : IPointSource
+    public class PointStream
     {
-       public Point GetPoint()
+        private static PointStream instance;
+        private IPointSource _source;
+        
+        private PointStream(IPointSource source)
         {
-            throw new NotImplementedException();
+            this._source = source;
+        }
+        
+        public static PointStream Instance()
+        {
+            return instance;
         }
 
-      public void GetFourArgs()
+        public static PointStream Instance(IPointSource source)
         {
+            if (instance == null || source != instance._source)
+            {
+                instance = new PointStream(source);
+            }
+            return instance;
+        }
 
+        public Point GetPoint()
+        {
+            return _source.GetPoint();
         }
     }
 }
