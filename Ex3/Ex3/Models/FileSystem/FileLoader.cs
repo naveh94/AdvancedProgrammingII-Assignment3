@@ -11,12 +11,13 @@ namespace Ex3.Models.FileSystem
     {
         private string _path;
 
+//loadinf file from the path
         public FileLoader(string path)
         {
             this._path = path;
       
         }
-
+// reading the values from file
        public string ReadFromFile()
            
         {

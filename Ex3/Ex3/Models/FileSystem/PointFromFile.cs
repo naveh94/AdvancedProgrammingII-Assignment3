@@ -6,11 +6,13 @@ using System.Xml;
 
 namespace Ex3.Models.FileSystem
 {
+    
     public class PointFromFile : IPointSource
     {
         private XmlNodeList _xml;
         private int _index;
 
+        //getting the point values from the file 
         public PointFromFile(string path)
         {
             this._index = 0;
@@ -19,6 +21,7 @@ namespace Ex3.Models.FileSystem
             doc.LoadXml(fl.ReadFromFile());
             this._xml = doc.DocumentElement.ChildNodes;
         }
+
 
         public Point GetPoint()
         {
@@ -32,9 +35,6 @@ namespace Ex3.Models.FileSystem
             return new Point(lon, lat);
         }
 
-        public void Close()
-        {
-            //no implementation.
-        }
+       
     }
 }

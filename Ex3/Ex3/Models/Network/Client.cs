@@ -11,6 +11,8 @@ using System.Web;
 
 namespace Ex3.Models.Network
 {
+    //connecting to the flightGear Simulator as a client in order to get information from the simulator
+
     public class Client: IClient
     {
         private IPEndPoint _endPoint;
@@ -20,6 +22,7 @@ namespace Ex3.Models.Network
         private BinaryReader _reader;
         private Thread _clientThread;
 
+        //connecting with ip and port
         public Client(string ip, int port)
         {
            _endPoint = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -53,7 +56,7 @@ namespace Ex3.Models.Network
             _reader.Close();
             _stream.Close();
         }
-
+        //getting the values from the simulator
         public string GetValue(string input)
         {
             string buffer = "";

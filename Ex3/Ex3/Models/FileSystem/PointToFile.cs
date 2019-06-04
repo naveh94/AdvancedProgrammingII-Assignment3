@@ -13,7 +13,7 @@ namespace Ex3.Models.FileSystem
         private string _path;
         private StringBuilder _sb;
         private XmlWriter _writer;
-
+        //constructor
         public PointToFile(PointFromNetwork client, string path)
         {
             this._path = path;
@@ -26,14 +26,14 @@ namespace Ex3.Models.FileSystem
             this._writer.WriteStartDocument();
             this._writer.WriteStartElement("SavedData");
         }
-
+        //getting all 4 values and returning only a point(x,y)
         public Point GetPoint()
         {
             Quadple quad = this._client.GetQuadple();
             quad.ToXML(this._writer);
             return new Point(quad.Lon, quad.Lat);
         }
-
+        //closing file
         public void Close()
         {
             this._writer.WriteEndElement();

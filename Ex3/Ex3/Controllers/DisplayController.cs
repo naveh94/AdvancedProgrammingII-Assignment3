@@ -11,6 +11,7 @@ using System.Xml;
 
 namespace Ex3.Controllers
 {
+    //the controller class classifing each command to its correct implementation.
     public class DisplayController : Controller
     {
 
@@ -25,7 +26,7 @@ namespace Ex3.Controllers
         {
             return View();
         }
-
+        //the display single point command
         public ActionResult DisplaySinglePoint(String ip, int port)
         {
             IClient client;
@@ -44,7 +45,7 @@ namespace Ex3.Controllers
             ViewBag.Time = 0;
             return View();
         }
-
+        //the display frequency command
         public ActionResult DisplayFreq(String ip, int port, int freq)
         {
             IClient client;
@@ -62,7 +63,7 @@ namespace Ex3.Controllers
             ViewBag.Time = 0;
             return View();
         }
-
+        //reading from file command
         public ActionResult DisplayFile(String filename, int freq)
         {
             PointStream.Instance(new PointFromFile(Path(filename)));
@@ -90,7 +91,7 @@ namespace Ex3.Controllers
             ViewBag.Time = time;
             return View();
         }
-
+        //getting the point values
         [HttpPost]
         public string GetPoint()
         {
@@ -101,7 +102,7 @@ namespace Ex3.Controllers
             }
             return ToXml(p);
         }
-
+        //converting values and information to a xml form
         private string ToXml(Point point)
         {
             StringBuilder sb = new StringBuilder();
@@ -119,7 +120,7 @@ namespace Ex3.Controllers
 
             return sb.ToString();
         }
-
+        //closing file
         [HttpPost]
         public void Close()
         {

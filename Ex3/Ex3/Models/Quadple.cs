@@ -5,6 +5,7 @@ namespace Ex3.Models {
     public class Quadple
 
     {
+        //4 values of lat lon throttle and rudder
         public double Lon { get; set; }
         public double Lat { get; set; }
         public double Throttle { get; set; }
@@ -17,7 +18,8 @@ namespace Ex3.Models {
             this.Rudder = rudder;
             this.Throttle = throttle;
         }
-
+        
+        //converting values to xml form
         public void ToXML(XmlWriter writer)
         {
             writer.WriteStartElement("Quadple");

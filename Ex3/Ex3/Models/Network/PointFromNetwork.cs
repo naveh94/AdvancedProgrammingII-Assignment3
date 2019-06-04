@@ -7,6 +7,7 @@ namespace Ex3.Models.Network
 {
     public class PointFromNetwork : IPointSource
     {
+        //getting the actual information about the plane location from the simulator
         private IClient _client;
 
         private readonly String GET_RUDDER = "get controls/flight/rudder\r\n";
@@ -18,14 +19,14 @@ namespace Ex3.Models.Network
         {
             this._client = client;
         }
-
+        //getting Lan and Lot values
         public Point GetPoint()
         {
             string Lon = _client.GetValue(GET_LON);
             string Lat = _client.GetValue(GET_LAT);
             return new Point(StringToValue(Lon), StringToValue(Lat));
         }
-
+        //getting all four values-lan,lot,rudder,throttle
         public Quadple GetQuadple()
         {
             string Lon = _client.GetValue(GET_LON);
@@ -34,7 +35,7 @@ namespace Ex3.Models.Network
             string Throttle = _client.GetValue(GET_THROTTLE);
             return new Quadple(StringToValue(Lon), StringToValue(Lat), StringToValue(Rudder), StringToValue(Throttle));
         }
-
+        
         private double StringToValue(string input)
         {
             string[] split = input.Split(new char[] { '\'' });

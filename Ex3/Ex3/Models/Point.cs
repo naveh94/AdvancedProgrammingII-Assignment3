@@ -5,7 +5,8 @@ using System.Web;
 using System.Xml;
 
 namespace Ex3.Models
-{
+{ 
+    //the lan and lot values
     public class Point
     {
         public double X { get; set; }
